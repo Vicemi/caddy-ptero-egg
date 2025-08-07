@@ -1,11 +1,466 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Caddy</title>
-    </head>
-    <body>
-        <h1>Hello, World!</h1>
-    </body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a BoxmineWorld</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #36393E 0%, #2c2f33 100%);
+            color: #f0f0f0;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #B59D12, #FFD76B);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: 4px solid #3F497A;
+        }
+        
+        .logo {
+            width: 187px;
+            height: 224px;
+            object-fit: contain;
+        }
+        
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #FFD76B, #B59D12);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 5s infinite alternate;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #FFD76B;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .welcome-card {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(63, 73, 122, 0.25);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 2px solid #3F497A;
+        }
+        
+        .welcome-card h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #FFD76B;
+        }
+        
+        .features {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature-card {
+            background: rgba(54, 57, 62, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid #3F497A;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(63, 73, 122, 0.3);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #FFD76B;
+            background: rgba(54, 57, 62, 0.8);
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            text-align: center;
+            margin: 0 auto 20px;
+            border: 2px solid #3F497A;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #FFD76B;
+        }
+        
+        /* Promotion Section */
+        .promotion {
+            background: linear-gradient(45deg, #3F497A 0%, #2a325e 100%);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #B59D12;
+        }
+        
+        .promotion::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+            opacity: 0.1;
+        }
+        
+        .promotion-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .promotion h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #FFD76B;
+        }
+        
+        .promotion p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #f0f0f0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #B59D12, #FFD76B);
+            color: #36393E;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(181, 157, 18, 0.4);
+            border: 2px solid #FFD76B;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(181, 157, 18, 0.6);
+            background: linear-gradient(45deg, #FFD76B, #B59D12);
+        }
+        
+        /* Stats Section */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            min-width: 200px;
+            background: rgba(63, 73, 122, 0.25);
+            border-radius: 15px;
+            border: 2px solid #3F497A;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #FFD76B;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(181, 157, 18, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid #3F497A;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .powered-by {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #FFD76B;
+            font-weight: bold;
+        }
+        
+        .test-site-notice {
+            background: rgba(181, 157, 18, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 30px auto;
+            border: 2px solid #B59D12;
+            position: relative;
+        }
+        
+        .test-site-notice h3 {
+            color: #FFD76B;
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+        }
+        
+        .test-site-notice::before {
+            content: "⚡";
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 2rem;
+            color: #FFD76B;
+            background: #36393E;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            line-height: 40px;
+            border: 2px solid #B59D12;
+        }
+        
+        /* Animation Elements */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 107, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 215, 107, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 215, 107, 0); }
+        }
+        
+        /* Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: #FFD76B;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.2rem; }
+            .promotion { padding: 30px 20px; }
+            .promotion h2 { font-size: 2rem; }
+            .logo-container {
+                width: 150px;
+                height: 150px;
+            }
+            .logo {
+                width: 110px;
+                height: 110px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo-container floating">
+                <img src="https://boxmineworld.com/images/other-services/mc.png" alt="BoxmineWorld Logo" class="logo">
+            </div>
+            <h1>¡Bienvenido a Su Nuevo Servidor!</h1>
+            <p class="subtitle">Su entorno de servidor ha sido configurado con éxito por BoxmineWorld y está listo para usar</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="welcome-card">
+                <h2>Configuración Exitosa</h2>
+                <p>Felicidades, su nuevo servidor ha sido creado con éxito y está funcionando correctamente. Esta página de bienvenida confirma que todos los servicios se están ejecutando según lo previsto.</p>
+                <p>Ahora puede comenzar a personalizar su servidor, implementar aplicaciones y configurar sus servicios según sus necesidades específicas.</p>
+                <p>Para administrar su servidor, acceda al panel de control proporcionado con su plan de hosting de BoxmineWorld.</p>
+                
+                <div class="test-site-notice">
+                    <h3>Web de Prueba</h3>
+                    <p>Esta es una página de prueba temporal que se muestra cuando se crea un nuevo servidor con BoxmineWorld. Puede reemplazarla con su propio contenido cuando esté listo.</p>
+                </div>
+            </div>
+            
+            <div class="features">
+                <h2 style="text-align: center; margin-bottom: 25px; color: #FFD76B;">¿Por Qué Elegir BoxmineWorld?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Rendimiento Óptimo</h3>
+                        <p>Servidores de última generación con SSD NVMe para máxima velocidad y rendimiento.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Seguridad Avanzada</h3>
+                        <p>Protección DDoS, firewalls avanzados y copias de seguridad automáticas diarias.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-headset"></i>
+                        <h3>Soporte 24/7</h3>
+                        <p>Nuestro equipo de soporte está disponible en todo momento para ayudarle.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-sync-alt"></i>
+                        <h3>Escalabilidad</h3>
+                        <p>Aumente o disminuya sus recursos en cualquier momento según sus necesidades.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">99.9%</div>
+                <p>Tiempo de actividad garantizado</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <p>Soporte técnico especializado</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10K+</div>
+                <p>Servidores implementados</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <p>Satisfacción del cliente</p>
+            </div>
+        </div>
+        
+        <div class="promotion">
+            <div class="promotion-content">
+                <h2>Obtenga Más con BoxmineWorld</h2>
+                <p>Descubra nuestros planes de hosting premium diseñados para ofrecer el mejor rendimiento, seguridad y confiabilidad. Ya sea que necesite un servidor pequeño para un proyecto personal o infraestructura empresarial, tenemos la solución perfecta para usted.</p>
+                <a href="https://boxmineworld.com" class="cta-button">
+                    Ver Planes de Hosting <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <footer>
+            <p class="powered-by">Esta página de prueba está potenciada por <strong>BoxmineWorld.com</strong></p>
+            <p>© 2023 BoxmineWorld - Todos los derechos reservados</p>
+            <p>Servicio de hosting premium para empresas y desarrolladores</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Crear partículas flotantes para el fondo
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamaño y posición aleatorios
+                const size = Math.random() * 20 + 5;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 10 + 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animation = `floating ${duration}s ease-in-out ${delay}s infinite`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        });
+    </script>
+</body>
 </html>
